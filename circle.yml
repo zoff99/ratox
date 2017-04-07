@@ -141,9 +141,9 @@ dependencies:
 
     - cp -av config.def.h config.h
     - . ~/pp ; make
-    # - . ~/pp ; $CC -O2 -fPIC -Wall -Wextra -Wpedantic -o toxdoorspy toxdoorspy.c -std=gnu99 -lsodium -I"$_SYSROOT_"/usr/local/include/ -L"$_SYSROOT_"/usr/lib/arm-linux-gnueabihf/ -ltoxcore -ltoxav -lpthread -lvpx -ljpeg -lv4lconvert
     - ls -al
     - find . -name '*ratox*' -exec ls -al {} \; 2> /dev/null ; exit 0
+    - cp -av ./ratox $CIRCLE_ARTIFACTS/"${CUR_ARCH_}"/
 
 ## ----------- RASPI cross compile ----------------
 
@@ -151,5 +151,14 @@ test:
   override:
     - make
     - ls -al
-    - ls -al ratox ; exit 0
+    - ls -al ratox
+    - mkdir -p $CIRCLE_ARTIFACTS/ubuntu_14_04_binaries/
+    - cp -av ratox $CIRCLE_ARTIFACTS/ubuntu_14_04_binaries/
+    - ./ratox > ratox_run.log 2> ratox_run.log :
+        background: true
+    - sleep 10
+    #- sleep 240
+    - cat ratox_run.log
+
+
 
