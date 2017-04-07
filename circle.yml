@@ -139,7 +139,7 @@ dependencies:
     - . ~/pp;cd "$_SYSROOT_" ; tar -xzvf ~/pkg1.tgz
     # install raspi binary pkgs -------------------------
 
-    - cp -av config.def.h config.h
+    - rm -v ratox ; exit 0
     - . ~/pp ; make
     - ls -al
     - find . -name '*ratox*' -exec ls -al {} \; 2> /dev/null ; exit 0
@@ -149,6 +149,7 @@ dependencies:
 
 test:
   override:
+    - rm -v ratox ; exit 0
     - make
     - ls -al
     - ls -al ratox
