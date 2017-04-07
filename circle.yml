@@ -158,8 +158,7 @@ test:
     - ./ratox > ratox_run.log 2> ratox_run.log :
         background: true
     - sleep 10
-    #- sleep 240
+    - sleep 240
     - cat ratox_run.log
-
-
+    - cat ratox_run.log | grep 'Connected' # simple check if binary can run and connect to tox-network
 
